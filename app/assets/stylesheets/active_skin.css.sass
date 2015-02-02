@@ -1,48 +1,84 @@
-@import url(//fonts.googleapis.com/css?family=Source+Sans+Pro:400,600,700&subset=latin,latin-ext)
+// Colours
+$black: #252525
+$grey: #343839
+$grey-text: #777777
+$red: #f0594e
+$dirty-grey: #b6c4c4
+$bg-grey: #f2f2f2
+$border-grey: #dedede
+$transparent-black: rgba($black, 0.98)
+
+// Fonts
+$heading-font: "adelle", sans-serif
+$pin-font: "adelle", sans-serif
+$body-font: "museo-sans", sans-serif
+
 $skinTextColor: #1e2a33 !default
 $skinTextActiveColor: #fff !default
 $skinTextTable: #7f8c8d !default
-$skinActiveColor: #e73c3c !default
+$skinActiveColor: $red !default
 $skinHeaderBck: #1e2a33 !default
-$panelHeaderBck: #2c3e50 !default
+$panelHeaderBck: $grey !default
 $skinLogo: #fff image-url("active_skin/default_logo.png") no-repeat 30px 0 !default
 
+
+
 html
-  background: #ecf0f1
-  font-family: 'Source Sans Pro', sans-serif
+  background: $bg-grey
+  font-family: $body-font
 
 body.active_admin
-  background: #ecf0f1
-  font-family: 'Source Sans Pro', sans-serif
+  background: $bg-grey
+  font-family: $body-font
   padding-bottom: 80px
 
 #header
-  background: #ecf0f1
+  background: #fff
   border: none
   text-shadow: none
-  height: 40px
+  height: 50px
   padding: 0
   h1.site_title
     background-color: #fff
     background: $skinLogo
-    padding-left: 130px
+    padding: 0
+    margin: 0
+    float: left
+    background-repeat: no-repeat
+    background-size: contain
+    background-position: 0 50%
     color: $skinTextColor
-    text-indent: -999999px
+    img
+      display: block
+      position: static
+      top: 0
   a, a:link
     color: $skinTextColor
   ul.tabs
     padding: 0
     font-size: 0
+    margin: 0
+    height: 50px
+    display: block
+    position: static
+    top: 0
   ul.tabs > li:hover > a, ul.tabs > li.current > a
     color: $skinTextActiveColor
     background: $skinActiveColor
     @include rounded(0)
-    margin: -10px 0
   ul.tabs > li 
-    font-size: 12px
+    font-size: 14px
     margin: 0
+    height: 100%
+    display: block
+    float: left
     a
-      padding: 13px 20px
+      height: 100%
+      display: block
+      float: left
+      margin: 0
+      line-height: 50px
+      padding: 0 1em
       margin: 0
   ul.tabs > li.has_nested a
     background-position: 93% 50%
@@ -64,9 +100,15 @@ body.active_admin
   ul.tabs > li.has_nested.current a
     background-color: $skinActiveColor
     background-position: 93% 50%
+  #tabs
+    width: auto
+    float: left
   #utility_nav
     background: #fff
     padding: 0
+    float: right
+    span
+      line-height: 50px
     li#logout a
       font-weight: bold
       text-decoration: underline
@@ -87,8 +129,9 @@ body.active_admin
   margin: 0
   h2
     color: #fff
-  .action_items a
-    @include rounded(0)
+    font-family: $heading-font
+  .action_items span.action_item > a
+    @include rounded(3px)
     background: $skinActiveColor
     color: #fff
     @include no-shadow()
@@ -170,7 +213,6 @@ table.index_table
 .pagination
   margin-top: -2px
   a, span.page.current
-    font-family: 'Source Sans Pro', sans-serif
     border: 1px solid #d3d8dc
     background: #ecf0f1
     @include no-shadow()
@@ -219,7 +261,6 @@ table.index_table
       font-weight: normal
       font-size: 13px
       text-transform: uppercase
-      font-family: 'Source Sans Pro', sans-serif
       padding: 7px 0
 
 #footer
@@ -242,48 +283,57 @@ a.button,
 a:link.button, 
 a:visited.button
   @include no-shadow()
-  @include rounded(0)
+  @include rounded(3px)
   background: $skinActiveColor
   color: #fff
   border: none
   text-shadow: none
-  padding: 11px 20px
+  padding: 10px 20px
+  font-size: 14px
   &:hover
     background: lighten( $skinActiveColor, 10% ) !important
 form fieldset.buttons li.cancel a, 
 form fieldset.actions li.cancel a, 
 form.filter_form a.clear_filters_btn
-  background: #ecf0f1
+  background: $dirty-grey
   @include no-shadow()
-  @include rounded(0)
+  @include rounded(3px)
   text-shadow: none
   padding: 10px 20px
-  color: #95a5a6
+  font-size: 14px
+  color: $grey
+  border: 0
   &:hover
-    background: lighten( #ecf0f1, 5% ) !important
+    background: lighten( $dirty-grey, 5% ) !important
 
 form fieldset.inputs
   background: #fff
   border: 1px solid #d3d8dc
   position: relative
-  padding-top: 50px
+  padding: 20px
   @include no-shadow()
   @include rounded(0)
+  
+  legend + ol 
+    margin-top: 40px
+  
   legend
-    border-bottom: 1px solid #d3d8dc
     position: absolute
-    top: 0
     span
-      background: #f0f4f5
-      color: $panelHeaderBck
+      position: relative
+      display: block
+      color: $grey
       border: none
       margin: 0
-      padding: 8px 15px
+      padding: 0
+      background: none
       @include no-shadow()
       @include rounded(0)
       text-shadow: none
-      font-weight: bold
+      font-family: $heading-font
+      font-size: 28px
   ol > li
+    padding: 6px 0
     label
       padding-top: 7px
       text-transform: uppercase
@@ -309,7 +359,6 @@ form fieldset.inputs
 
 .attributes_table table th, .attributes_table table td
   padding: 10px 0
-  font-family: 'Source Sans Pro', sans-serif
   color: #95a5a6
 .attributes_table table th
   font-weight: normal
@@ -335,11 +384,12 @@ body.logged_out
       border: none
     > h2
       background: $panelHeaderBck
-      font-family: 'Source Sans Pro', sans-serif
       color: #fff
       @include no-shadow()
       @include rounded(0)
-      padding: 8px 15px
+      padding: 16px 15px
+      font-family: $heading-font
+      font-size: 2em
     fieldset.actions
       background: #f1f5f6
       margin: 0 -30px -17px
@@ -365,8 +415,8 @@ form input[type=number],
 form input[type=url], 
 form input[type=tel], 
 form textarea
-  @include rounded(0)
-  font-family: 'Source Sans Pro', sans-serif
+  @include rounded(3px)
+  font-family: $body-font
   padding: 5px 10px
 
 form.filter_form .filter_form_field.filter_date_range input[type=text]
